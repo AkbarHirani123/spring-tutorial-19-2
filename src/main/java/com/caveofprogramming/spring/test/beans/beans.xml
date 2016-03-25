@@ -6,18 +6,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 
-	<bean id="logger" class="com.caveofprogramming.spring.test.Logger">
-	</bean>
-
-	<bean id="consoleWriter" class="com.caveofprogramming.spring.test.ConsoleWriter">
-		<qualifier value="toconsole"></qualifier>
-	</bean>
-
-	<bean id="squirrel" class="com.caveofprogramming.spring.test.ConsoleWriter">
-	</bean>
-
-	<bean id="mongoose" class="com.caveofprogramming.spring.test.FileWriter">
-	</bean>
-
 	<context:annotation-config></context:annotation-config>
+	
+	<context:component-scan base-package="com.caveofprogramming.spring.test">
+	</context:component-scan>
+	
 </beans>
