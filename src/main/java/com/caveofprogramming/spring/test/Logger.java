@@ -2,7 +2,10 @@ package com.caveofprogramming.spring.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
 import javax.annotation.*;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /*
  * Dummy implementation of logger.
@@ -20,18 +23,24 @@ public class Logger {
 	 * fileWriter) { this.consoleWriter = consoleWriter; this.fileWriter =
 	 * fileWriter; }
 	 */
-/*	@Autowired
-	@Qualifier("toconsole")
-*/	
-	@Resource
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier("toconsole")
+	 */
+	@Inject
+	@Named(value="consoleWriter")
 	public void setConsoleWriter(ConsoleWriter writer) {
 		this.consoleWriter = writer;
 	}
 
-/*	@Autowired
-	@Qualifier("filewriter")
-*/	
-	@Resource(name="squirrel")
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier("filewriter")
+	 */
+	@Inject
+	@Named(value="squirrel")
 	public void setFileWriter(LogWriter fileWriter) {
 		this.fileWriter = fileWriter;
 	}
@@ -50,7 +59,7 @@ public class Logger {
 	public void init() {
 		System.out.println("init");
 	}
-	
+
 	@PreDestroy
 	public void destroy() {
 		System.out.println("destroy");
